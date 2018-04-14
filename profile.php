@@ -63,7 +63,7 @@ if(isset($_GET["id"])) :
   </div><!-- /.container-fluid -->
 </nav>
 
-<div id= "main-content" class="container-fluid text-center">
+<div id= "main-content" class="container-fluid">
 
 <div class="row">
     <div class="col-md-3">
@@ -71,7 +71,7 @@ if(isset($_GET["id"])) :
     </div><!-- End of 1st col-->
 
     <div class="col-md-6">
-          <h2><?php echo $user->username; ?></h2>
+          <h2><?php echo "@".$user->username; ?></h2>
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
           <p id = "posting">
@@ -103,7 +103,7 @@ if(isset($_GET["id"])) :
   
   <footer class="footer bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy;Hisser Sharing</p>
+            <p class="m-0 text-center">Copyright &copy;Hisser Sharing</p>
         </div>
         <!-- /.container -->
     </footer> 

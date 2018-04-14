@@ -1,3 +1,10 @@
+body {
+  padding-top: 54px;
+  background: #ffffff; /* #c1bdba */
+  font-family: 'Titillium Web', sans-serif;
+}
+
+
 #brand-image{
 	height: 25px;
 	display: inline;
@@ -42,11 +49,7 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 54px;
-  background: #ffffff; /* #c1bdba */
-  font-family: 'Titillium Web', sans-serif;
-}
+
 
 a {
   text-decoration: none;
