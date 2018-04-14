@@ -22,6 +22,7 @@ if(isset($_GET["id"])) :
   <title>Profile</title>
   <?php include 'css/css.html'; ?>
 </head>
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -70,7 +71,7 @@ if(isset($_GET["id"])) :
     <?php $user->getOtherUsers(); ?>
     </div><!-- End of 1st col-->
 
-    <div class="col-md-6">
+    <div class="col-md-5">
           <h2><?php echo "@".$user->username; ?></h2>
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
@@ -82,8 +83,9 @@ if(isset($_GET["id"])) :
         </form>  
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
           <form action="addcomment.php" method="post">
-            <textarea id = "posting" name="comment" placeholder = "Share something with your fellow snakes..."></textarea>
-            <br />
+            <textarea class="form-control" rows="3" name="comment" placeholder = "Share something with your fellow snakes..." onkeyup="count_down(this);"></textarea>
+            <span class="text-muted pull-right" id="count2">200</span>
+            <br>
             <input id = "followButton" type="submit" value="Submit" />
             <br />
             <br />
@@ -91,7 +93,7 @@ if(isset($_GET["id"])) :
         <?php endif; ?>
     </div><!--End of 2nd Col-->
 
-    <div id = "comment" class="col-md-3"> 
+    <div id = "comment" class="col-md-4"> 
     <?php $user->getComments(); ?>
 
     </div><!-- End of 3rd col-->
@@ -107,7 +109,25 @@ if(isset($_GET["id"])) :
         </div>
         <!-- /.container -->
     </footer> 
+<script>     
+        function count_down(obj) {
+             
+            var element = document.getElementById('count2');
+             
+            element.innerHTML = 200 - obj.value.length;
+             
+            if (200 - obj.value.length < 0) {
+                element.style.color = 'red';
+             
+            } else {
+                element.style.color = '#1ab188';
+            }
+             
+        }
+
+</script>
 </body>
+
 </html>
 <?php endif; ?>
 <?php $conn->close(); ?>

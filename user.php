@@ -51,35 +51,48 @@ class User
 
     if($_SESSION["userid"] == $this->userid) {
       // include comments from followed users
+      echo '<h3>Your feed</h3>';
       $followingSql = "SELECT following_userid FROM Followers WHERE follower_userid=".$this->userid;
       $sql = "SELECT * FROM Comments 
               INNER JOIN Users ON Comments.userId = Users.userId 
               WHERE Comments.userid=".$this->userid." OR Comments.userid IN (".$followingSql.") ORDER BY commentdate DESC";
+      $result = $this->conn->query($sql);
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          echo '<small>';
+          echo '<a href="profile.php?id='.$row["userid"].'">'."@".$row["username"].' '.'</a>'; 
+          echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
+          echo '</small><br />';
+          echo $row["comment"]. "<br />";
+          echo '<hr />';
+        }
     }
-    
+  }else{
     $result = $this->conn->query($sql);
-
+    $top = $result->fetch_assoc();
+    echo '<h3>@'. $top["username"].'\'s Hisses</h3>';
     if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
         echo '<small>';
-        echo '<a href="profile.php?id='.$row["userid"].'">'.$row["username"].' '.'</a>'; 
+        echo '<a href="profile.php?id='.$row["userid"].'">'."@".$row["username"].' '.'</a>'; 
         echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
         echo '</small><br />';
         echo $row["comment"]. "<br />";
         echo '<hr />';
       }
-    }
   }
+  }
+}
   
   public function getOtherUsers() {
     $sql = "SELECT * FROM Users WHERE userid<>" . $this->userid . " AND userid<>" . $_SESSION["userid"];
     $result = $this->conn->query($sql);
 
     if ($result->num_rows > 0) {
-      echo "<h3>Other Users</h3>";
-      echo "<ul>";
+      echo "<h3>Who to Follow</h3>";
+      echo "<ul style='list-style-type:none'>";
       while($row = $result->fetch_assoc()) {
-        echo '<li><a href="profile.php?id=' . $row["userid"] . '">' . $row["username"] . " " . '</a></li>';
+        echo '<li><a href="profile.php?id=' . $row["userid"] . '">' ."@". $row["username"] . " " . '</a></li>';
       }
       echo "</ul>";
     }
