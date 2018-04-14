@@ -68,19 +68,25 @@ if(isset($_GET["id"])) :
 
 <div class="row">
     <div class="col-md-3">
-    <?php $user->getOtherUsers(); ?>
-    </div><!-- End of 1st col-->
-
-    <div class="col-md-5">
-          <h2><?php echo "@".$user->username; ?></h2>
+    <div class="panel panel-success">
+        <div class="panel-heading text-center"><?php echo "@".$user->username; ?></div>
+        <div class="panel-body"> 
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
           <p id = "posting">
             <?php echo $user->getNumFollowing(); ?> Following |
             <?php echo $user->getNumFollowers(); ?> Followers
-            <?php $user->getFollowButton(); ?>
           </p>
+          <?php $user->getFollowButton(); ?>
         </form>  
+
+
+        </div>
+      </div>
+    
+    </div><!-- End of 1st col-->
+
+    <div class="col-md-5">
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
           <form action="addcomment.php" method="post">
             <textarea class="form-control" rows="3" name="comment" placeholder = "Share something with your fellow snakes..." onkeyup="count_down(this);"></textarea>
@@ -91,10 +97,16 @@ if(isset($_GET["id"])) :
             <br />
           </form>
         <?php endif; ?>
+        <div id = "comment">
+             <?php $user->getComments(); ?>
+        </div>
     </div><!--End of 2nd Col-->
 
-    <div id = "comment" class="col-md-4"> 
-    <?php $user->getComments(); ?>
+    <div class="col-md-4"> 
+    <div class="panel panel-success">
+        <div class="panel-heading">Who to Follow</div>
+        <div class="panel-body"> <?php $user->getOtherUsers(); ?> </div>
+      </div>
 
     </div><!-- End of 3rd col-->
 

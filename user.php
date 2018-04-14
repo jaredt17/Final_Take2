@@ -89,7 +89,6 @@ class User
     $result = $this->conn->query($sql);
 
     if ($result->num_rows > 0) {
-      echo "<h3>Who to Follow</h3>";
       echo "<ul style='list-style-type:none'>";
       while($row = $result->fetch_assoc()) {
         echo '<li><a href="profile.php?id=' . $row["userid"] . '">' ."@". $row["username"] . " " . '</a></li>';
@@ -116,9 +115,9 @@ class User
 
       $result=mysqli_query($this->conn,$sql);
       if(mysqli_num_rows($result)) {
-        echo '| <input type="submit" id = "followButton" name="unfollow" value="Unfollow">';
+        echo '<input type="submit" id = "followButton" name="unfollow" value="Unfollow">';
       } else {
-        echo '| <input type="submit" id = "followButton" name="follow" value="Follow">';
+        echo '<input type="submit" id = "followButton" name="follow" value="Follow">';
       }
     }
   }

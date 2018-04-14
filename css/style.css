@@ -1,5 +1,6 @@
 body {
-  padding-top: 54px;
+  padding-top: 65px;
+  padding-bottom: 30px;
   background: #ffffff; /* #c1bdba */
   font-family: 'Titillium Web', sans-serif;
 }
@@ -30,7 +31,19 @@ body {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(26,177,136);
 }
 
+.panel-success{
+  border: 2px solid #1ab188;
+  background: darkslategray;
+  color: #1ab188;
+}
 
+.panel-success > .panel-heading{
+  font-size: 150%;
+  font-weight: bold;
+  
+  background: darkslateblue;
+  color: #1ab188;
+}
 
 #posting{
   color: #1ab188;
@@ -141,7 +154,6 @@ span {
 p {
     text-align: center;
     color:#1ab188;
-    margin: 0px 0px 50px 0px;
 }
 
 div.info {
