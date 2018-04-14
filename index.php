@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="homepage.php">
+      <a class="navbar-brand" href="homepage.php?id=<?php echo $_SESSION["userid"] ?>">
                         <img id="brand-image" src="images/snake.png" alt="snake">
                         Hisser - A Sharing Site for Snakes 
       </a>
