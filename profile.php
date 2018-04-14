@@ -82,9 +82,9 @@ if(isset($_GET["id"])) :
         </form>  
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
           <form action="addcomment.php" method="post">
-            <textarea id = "posting" name="comment"></textarea>
+            <textarea id = "posting" name="comment" placeholder = "Share something with your fellow snakes..."></textarea>
             <br />
-            <input id = "posting" type="submit" value="Submit" />
+            <input id = "followButton" type="submit" value="Submit" />
             <br />
             <br />
           </form>
