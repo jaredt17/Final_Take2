@@ -18,6 +18,9 @@
   color: #1ab188;
 }
 
+#followButton{
+  color:  #1ab188;
+}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -250,3 +253,8 @@ textarea {
   background-color: black;
 }
 /*end of profile specific css*/
+
+#contains{
+  background-color: black;
+}
+

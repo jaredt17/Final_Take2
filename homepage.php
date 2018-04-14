@@ -56,6 +56,8 @@ if(isset($_GET["id"])) :
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
   <?php if(isset($_SESSION["userid"])) : ?>
     <p>Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo $_SESSION["username"]; ?></b></a>.
       <a href="logout.php">Logout</a></p>

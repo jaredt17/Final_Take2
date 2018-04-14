@@ -103,9 +103,9 @@ class User
 
       $result=mysqli_query($this->conn,$sql);
       if(mysqli_num_rows($result)) {
-        echo '| <input type="submit" name="unfollow" value="Unfollow">';
+        echo '| <input type="submit" id = "followButton" name="unfollow" value="Unfollow">';
       } else {
-        echo '| <input type="submit" name="follow" value="Follow">';
+        echo '| <input type="submit" id = "followButton" name="follow" value="Follow">';
       }
     }
   }

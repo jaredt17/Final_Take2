@@ -6,6 +6,7 @@
 session_start();
 include 'database.php';
 include 'user.php';
+
 if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing your profile page!";
   header("location: error.php");    
@@ -73,7 +74,7 @@ if(isset($_GET["id"])) :
           <h2><?php echo $user->username; ?></h2>
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
-          <p>
+          <p id = "posting">
             <?php echo $user->getNumFollowing(); ?> Following |
             <?php echo $user->getNumFollowers(); ?> Followers
             <?php $user->getFollowButton(); ?>
@@ -81,9 +82,9 @@ if(isset($_GET["id"])) :
         </form>  
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
           <form action="addcomment.php" method="post">
-            <textarea name="comment"></textarea>
+            <textarea id = "posting" name="comment"></textarea>
             <br />
-            <input type="submit" value="Submit" />
+            <input id = "posting" type="submit" value="Submit" />
             <br />
             <br />
           </form>
