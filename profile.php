@@ -16,7 +16,7 @@ if(isset($_GET["id"])) :
   $userid = mysqli_real_escape_string($conn, $_GET["id"]);
   $user = new User($userid);
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Profile</title>
@@ -43,7 +43,7 @@ if(isset($_GET["id"])) :
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <p class="navbar-text">
-       Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo $_SESSION["username"]; ?></b></a></p>
+       Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo "@".$_SESSION["username"]; ?></b></a></p>
 
      
 
@@ -63,7 +63,7 @@ if(isset($_GET["id"])) :
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid text-center">
+<div id= "main-content" class="container-fluid text-center">
 
 <div class="row">
     <div class="col-md-3">
@@ -91,7 +91,7 @@ if(isset($_GET["id"])) :
         <?php endif; ?>
     </div><!--End of 2nd Col-->
 
-    <div class="col-md-3"> 
+    <div id = "comment" class="col-md-3"> 
     <?php $user->getComments(); ?>
 
     </div><!-- End of 3rd col-->

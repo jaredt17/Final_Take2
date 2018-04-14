@@ -6,8 +6,9 @@
 session_start();
 include 'database.php';
 include 'user.php';
+
 if ( $_SESSION['logged_in'] != 1 ) {
-  $_SESSION['message'] = "You must log in before viewing your Home page!";
+  $_SESSION['message'] = "You must log in before viewing your profile page!";
   header("location: error.php");    
 }
 
@@ -15,10 +16,10 @@ if(isset($_GET["id"])) :
   $userid = mysqli_real_escape_string($conn, $_GET["id"]);
   $user = new User($userid);
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Home</title>
+  <title>Profile</title>
   <?php include 'css/css.html'; ?>
 </head>
 <body>
@@ -36,14 +37,19 @@ if(isset($_GET["id"])) :
                         <img id="brand-image" src="images/snake.png" alt="snake">
                         Hisser - A Sharing Site for Snakes 
       </a>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="myNavbar">
-      
+      <p class="navbar-text">
+       Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo "@".$_SESSION["username"]; ?></b></a></p>
+
+     
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="homepage.php">Home</a></li>
-        <li class = "active"><a href="profile.php">Profile</a></li>
+        <li class = "active"><a href="profile.php?id=<?php echo $_SESSION["userid"] ?>">Profile</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -57,31 +63,44 @@ if(isset($_GET["id"])) :
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container-fluid text-center">
 
-  <?php if(isset($_SESSION["userid"])) : ?>
-    <p>Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo $_SESSION["username"]; ?></b></a>.
-      <a href="logout.php">Logout</a></p>
-  <?php endif; ?>  
-  <h2><?php echo $user->username; ?></h2>
-  <form action="followuser.php" method="post">
-    <input type="hidden" name="userid" value="<?php echo $userid ?>" />
-    <p>
-      <?php echo $user->getNumFollowing(); ?> Following |
-      <?php echo $user->getNumFollowers(); ?> Followers
-      <?php $user->getFollowButton(); ?>
-    </p>
-  </form>  
-  <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
-    <form action="addcomment.php" method="post">
-      <textarea name="comment"></textarea>
-      <br />
-      <input type="submit" value="Submit" />
-      <br />
-      <br />
-    </form>
-  <?php endif; ?>
-  <?php $user->getComments(); ?>
-  <?php $user->getOtherUsers(); ?>
+<div class="row">
+    <div class="col-md-3">
+    <?php $user->getOtherUsers(); ?>
+    </div><!-- End of 1st col-->
+
+    <div class="col-md-6">
+          <h2><?php echo $user->username; ?></h2>
+        <form action="followuser.php" method="post">
+          <input type="hidden" name="userid" value="<?php echo $userid ?>" />
+          <p id = "posting">
+            <?php echo $user->getNumFollowing(); ?> Following |
+            <?php echo $user->getNumFollowers(); ?> Followers
+            <?php $user->getFollowButton(); ?>
+          </p>
+        </form>  
+        <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
+          <form action="addcomment.php" method="post">
+            <textarea id = "posting" name="comment"></textarea>
+            <br />
+            <input id = "posting" type="submit" value="Submit" />
+            <br />
+            <br />
+          </form>
+        <?php endif; ?>
+    </div><!--End of 2nd Col-->
+
+    <div id = "comment" class="col-md-3"> 
+    <?php $user->getComments(); ?>
+
+    </div><!-- End of 3rd col-->
+
+</div> <!--End of row -->
+</div> <!-- End of container-->
+
+  
+  
   <footer class="footer bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy;Hisser Sharing</p>

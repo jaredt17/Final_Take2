@@ -18,8 +18,20 @@
   color: #1ab188;
 }
 
+#comment{
+  overflow: auto;
+}
+
+#main-content{
+  background-color: white;
+}
+
+
 #followButton{
-  color:  #1ab188;
+  background-color: #1ab188;
+  color: white;
+  border: 2px solid black;
+
 }
 
 *, *:before, *:after {
