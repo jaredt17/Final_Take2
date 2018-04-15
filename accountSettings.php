@@ -7,7 +7,7 @@ session_start();
 include 'database.php';
 include 'user.php';
 
-
+//
 if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing your Account page!";
   header("location: error.php");    
