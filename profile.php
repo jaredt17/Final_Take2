@@ -87,17 +87,20 @@ if(isset($_GET["id"])) :
     </div><!-- End of 1st col-->
 
     <div class="col-md-5">
+    
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
+        <div class="panel panel-success">
           <form action="addcomment.php" method="post">
             <textarea class="form-control" rows="3" name="comment" placeholder = "Share something with your fellow snakes..." onkeyup="count_down(this);"></textarea>
             <span class="text-muted pull-right" id="count2">200</span>
             <br>
-            <input id = "followButton" type="submit" value="Submit" />
+            <input id = "followButton" type="submit" value="HISS" />
             <br />
             <br />
           </form>
-         
+          </div>
         <?php endif; ?>
+      
 
         <div class="panel panel-success">
               <?php $user->getComments();  ?>
