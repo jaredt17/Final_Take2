@@ -10,8 +10,11 @@ $email = mysqli_real_escape_string($conn, $_POST["email"]);
 $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
 if(!empty($username) && !empty($email) && !empty($password)) {
+
+  $StorePassword = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
+
   $sql = "INSERT INTO Users (username, email, password)
-  VALUES ('".$username."', '".$email."', '".$password."')";
+  VALUES ('".$username."', '".$email."', '".$StorePassword."')";
 
   if ($conn->query($sql) === TRUE) {
       $_SESSION["userid"] = $conn->insert_id;
