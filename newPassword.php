@@ -9,35 +9,36 @@ if ( $_SESSION['logged_in'] != 1 ) {
     header("location: error.php");    
   }
 
+
+
+  $useridentify = $_SESSION['userid'];
+
   if(!empty($_POST)){
     // Process the form
-     
-    $oldPass = $_POST['oldPass'];
-    $newPass = $_POST['newPass'];
-     
+    $oldPass = mysqli_real_escape_string($conn, $_POST["oldPass"]);
+    $newPass =  mysqli_real_escape_string($conn, $_POST["newPass"]);
     
     if($oldPass != $newPass){
+
         // Continue the process
-        $oldPass = $conn->real_escape_string($oldPass);
-        $newPass = $conn->real_escape_string($newPass);
-
-        $sql = "SELECT password FROM users WHERE userid= ".$_SESSION['userid']'.";
-        $query = $conn->query($sql);
-         
-        $pass = $query->fetch_assoc();
-        if($pass['password'] == $oldPass){
-            $sql = "UPDATE users SET password='".$newPass."WHERE userid=". $_SESSION['userid'];
-            $conn->query($sql);
+        $sql = "SELECT * FROM Users WHERE userid=6 AND password='".$oldPass."'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $newsql= "UPDATE users SET password=".$newPass."WHERE userid=".$useridentify." AND password=".$oldPass." ";
+            $conn->query($newsql);
+            echo $useridentify;
+            echo $newPass, $oldPass;
+        }else {
+            header("Location: error.php");
         }
-
-    }
-    else {
-        $error = 'Please provide both your current password and your new password.';
-    }
+}else{
+    $_SESSION['message'] = "form was empty" ;
+    header("Location: error.php");
+}
 }
 
 $conn->close();
-header("Location: profile.php?id=" . $_SESSION["userid"]);
+
 
 
 ?>

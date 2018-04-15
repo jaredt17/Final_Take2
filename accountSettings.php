@@ -37,6 +37,8 @@ if ( $_SESSION['logged_in'] != 1 ) {
                         <img id="brand-image" src="images/snake.png" alt="snake">
                         Hisser - A Sharing Site for Snakes 
       </a>
+      <p class="navbar-text">
+       Logged in as <a href="profile.php?id=<?php echo $_SESSION["userid"] ?>"><b><?php echo "@".$_SESSION["username"]; ?></b></a></p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,14 +85,14 @@ if ( $_SESSION['logged_in'] != 1 ) {
             <label>
               Old Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name="oldPass"/>
+            <input type="password" required autocomplete="off" name="oldPass" id="oldPass"/>
           </div>
           
           <div class="field-wrap">
             <label>
               New Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name="newPass"/>
+            <input type="password" required autocomplete="off" name="newPass" id ="newPass"/>
           </div>
           
           <button class="button button-block" name="resetPass" />Update Password</button>
