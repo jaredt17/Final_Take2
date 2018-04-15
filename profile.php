@@ -16,6 +16,7 @@ if(isset($_GET["id"])) :
   $userid = mysqli_real_escape_string($conn, $_GET["id"]);
   $user = new User($userid);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,12 +96,27 @@ if(isset($_GET["id"])) :
             <br />
             <br />
           </form>
+         
         <?php endif; ?>
 
         <div class="panel panel-success">
               <?php $user->getComments();  ?>
         </div>
+<<<<<<< HEAD
 
+=======
+        <?php
+          $sql = "SELECT * FROM images";
+          $result = mysqli_query($conn, $sql);
+          while($row = mysqli_fetch_array($result)){
+            echo "<img src='images/".$row['images']."'>";
+          }
+          ?>
+          <form action="fileUpload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name= "image">
+            <input type="submit" name="upload" value="Upload Image">
+          </form>
+>>>>>>> b852926d5786012b746863cff6f36de603351d72
     </div><!--End of 2nd Col-->
 
     <div class="col-md-4"> 
