@@ -9,9 +9,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
     header("location: error.php");    
   }
 
-
-
-  $useridentify = $_SESSION['userid'];
+  $userid = $_SESSION['userid'];
 
   if(!empty($_POST)){
     // Process the form
@@ -21,18 +19,20 @@ if ( $_SESSION['logged_in'] != 1 ) {
     if($oldPass != $newPass){
 
         // Continue the process
-        $sql = "SELECT * FROM Users WHERE userid=6 AND password='".$oldPass."'";
+        $sql = "SELECT * FROM Users WHERE userid= '$userid' AND password= '$oldPass'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $newsql= "UPDATE users SET password=".$newPass."WHERE userid=".$useridentify." AND password=".$oldPass." ";
-            $conn->query($newsql);
-            echo $useridentify;
-            echo $newPass, $oldPass;
-        }else {
+        if($result->num_rows > 0)
+        {   
+            //Change user info here
+            $sql = $conn->query("UPDATE users SET password = '{$newPass}' WHERE userid = '{$userid}'");
+
+        }else{
+            $_SESSION['message'] = "Please enter a valid old password.";
             header("Location: error.php");
         }
-}else{
-    $_SESSION['message'] = "form was empty" ;
+
+        }else{
+    $_SESSION['message'] = "Please make sure these fields are different.";
     header("Location: error.php");
 }
 }
