@@ -94,7 +94,7 @@ if(isset($_GET["id"])) :
             <textarea class="form-control" rows="3" name="comment" placeholder = "Share something with your fellow snakes..." onkeyup="count_down(this);"></textarea>
             <span class="text-muted pull-right" id="count2">200</span>
             <br>
-            <input id = "followButton" type="submit" value="HISS" />
+            <input id = "hissButton" type="submit" value="HISS" />
             <br />
             <br />
           </form>

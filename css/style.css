@@ -71,7 +71,13 @@ body {
   color: black;
   border: 2px solid black;
   border-radius: 4px;
+}
 
+#hissButton{
+  background-color: #1ab188;
+  color: black;
+  border: 2px solid black;
+  border-radius: 4px;
 }
 
 *, *:before, *:after {
