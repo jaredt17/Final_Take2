@@ -1,32 +1,26 @@
-<?php 
-/* Main page with two forms: sign up and log in */
-require 'database.php';
+<?php
+/**
+ * Account
+ *  Shows options for account deletion and password changing
+ */
 session_start();
+include 'database.php';
+include 'user.php';
+
+
+if ( $_SESSION['logged_in'] != 1 ) {
+  $_SESSION['message'] = "You must log in before viewing your Account page!";
+  header("location: error.php");    
+}
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sign-Up/Login</title>
+  <title>Profile</title>
   <?php include 'css/css.html'; ?>
 </head>
-
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-    if (isset($_POST['login'])) { //user logging in
-
-        require 'login.php';
-        
-    }
-    
-    elseif (isset($_POST['register'])) { //user registering
-        
-        require 'signup.php';
-        
-    }
-}
-?>
-
 <body>
     <!-- NAVBAR AT TOP -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -39,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="profile.php?id=<?php echo $_SESSION["userid"] ?>">
+      <a class="navbar-brand" href="homepage.php?id=<?php echo $_SESSION["userid"] ?>">
                         <img id="brand-image" src="images/snake.png" alt="snake">
                         Hisser - A Sharing Site for Snakes 
       </a>
@@ -49,11 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.php">Profile</a></li>
-        <li class="dropdown">
+        <li><a href="profile.php?id=<?php echo $_SESSION["userid"] ?>">Profile</a></li>
+        <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
           <ul class="dropdown-menu">
-          <li><a href="accountSettings.php">Settings</a></li>
+            <li><a href="accountSettings.php">Settings</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
@@ -74,32 +68,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div class="form">
       
       <ul class="tab-group">
-        <li class="tab"><a href="#signup">Sign Up</a></li>
-        <li class="tab active"><a href="#login">Log In</a></li>
+        <li class="tab active"><a href="#changePass">Change Password</a></li>
+        <li class="tab"><a href="#delAcc">Delete Account</a></li>
       </ul>
       
       <div class="tab-content">
 
-         <div id="login">   
-          <h1>HSSSSS... Welcome Back!</h1>
+         <div id="changePass">   
+          <h1>Change your Password</h1>
           
-          <form action="index.php" method="post" autocomplete="off">
+          <form action="newPassword.php" method="post" autocomplete="off">
           
             <div class="field-wrap">
             <label>
-              Email Address<span class="req">*</span>
+              Old Password<span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off" name="email"/>
+            <input type="password" required autocomplete="off" name="oldPass"/>
           </div>
           
           <div class="field-wrap">
             <label>
-              Password<span class="req">*</span>
+              New Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name="password"/>
+            <input type="password" required autocomplete="off" name="newPass"/>
           </div>
           
-          <button class="button button-block" name="login" />Log In</button>
+          <button class="button button-block" name="resetPass" />Update Password</button>
           
           </form>
 

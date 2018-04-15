@@ -1,7 +1,7 @@
 body {
   padding-top: 65px;
   padding-bottom: 30px;
-  background: #ffffff; /* #c1bdba */
+  background: #2f6357;
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -35,6 +35,7 @@ body {
   border: 2px solid #1ab188;
   background: darkslategray;
   color: #1ab188;
+  padding: 5px;
 }
 
 .panel-success > .panel-heading{
@@ -43,6 +44,11 @@ body {
   
   background: darkslateblue;
   color: #1ab188;
+}
+
+.panel-success > .panel-body{
+  overflow: auto;
+  word-wrap: break-word;
 }
 
 #posting{
@@ -55,7 +61,7 @@ body {
 }
 
 #main-content{
-  background-color: white;
+  background-color: #2f6357;
 }
 
 
