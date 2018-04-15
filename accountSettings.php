@@ -71,7 +71,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
       
       <ul class="tab-group">
         <li class="tab active"><a href="#changePass">Change Password</a></li>
-        <li class="tab"><a href="#delAcc">Delete Account</a></li>
+        <li class="tab"><a href="#delete">Delete Account</a></li>
       </ul>
       
       <div class="tab-content">
@@ -101,10 +101,10 @@ if ( $_SESSION['logged_in'] != 1 ) {
 
         </div>
           
-        <div id="signup">   
-          <h1>Become a Snake for Free!</h1>
+        <div id="delete">   
+          <h1>Delete Your Account :'(</h1>
           
-          <form action="index.php" method="post" autocomplete="off">
+          <form action="deleteAcc.php" method="post" autocomplete="off">
           
         
             <div class="field-wrap">
@@ -123,12 +123,12 @@ if ( $_SESSION['logged_in'] != 1 ) {
           
           <div class="field-wrap">
             <label>
-              Set A Password<span class="req">*</span>
+              Password<span class="req">*</span>
             </label>
             <input type="password"required autocomplete="off" name='password'/>
           </div>
           
-          <button type="submit" class="button button-block" name="register" />Register</button>
+          <button type="submit" class="button button-block" name="delete" />Delete Account! (CANNOT BE UNDONE)</button>
           
           </form>
 
