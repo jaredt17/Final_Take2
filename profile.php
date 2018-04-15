@@ -79,7 +79,8 @@ if(isset($_GET["id"])) :
           </p>
           <?php $user->getFollowButton(); ?>
         </form>  
-
+          <br>
+         
 
         </div>
       </div>
@@ -101,10 +102,30 @@ if(isset($_GET["id"])) :
           </div>
         <?php endif; ?>
       
-
+        <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
         <div class="panel panel-success">
-              <?php $user->getComments();  ?>
+
+        <?php $user->getFeed();?>
         </div>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] != $userid) : ?>
+        <div class="panel panel-success">
+       
+        <div class="panel-heading">
+        @
+        <?php 
+        $sql = "SELECT * FROM users WHERE userid='$userid'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo $row['username']; 
+        ?>'s Hisses
+        </div>
+        <?php $user->getPosts();?>
+        
+        </div>
+        <?php endif; ?>
+
         <?php
           $sql = "SELECT * FROM images";
           $result = mysqli_query($conn, $sql);

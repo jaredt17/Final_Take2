@@ -26,22 +26,29 @@ class User
   }
   
   public function getFeed() {
-    $followingSql = "SELECT following_userid FROM Followers WHERE follower_userid=".$this->userid;
-    $sql = "SELECT * FROM Comments 
-            INNER JOIN Users ON Comments.userId = Users.userId 
-            WHERE Comments.userid=".$this->userid." OR Comments.userid IN (".$followingSql.") ORDER BY commentdate DESC";
-    $result = $this->conn->query($sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        echo '<small>';
-        echo '<a href="profile.php?id='.$row["userid"].'">'.$row["firstname"].' '.$row["lastname"].'</a>'; 
-        echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
-        echo '</small><br />';
-        echo $row["comment"]. "<br />";
-        echo '<hr />';
+    if($_SESSION["userid"] == $this->userid) {
+      echo '<div class="panel-heading">Your feed</div>';
+      $followingSql = "SELECT following_userid FROM Followers WHERE follower_userid=".$this->userid;
+      $sql = "SELECT * FROM Comments 
+              INNER JOIN Users ON Comments.userId = Users.userId 
+              WHERE Comments.userid=".$this->userid." OR Comments.userid IN (".$followingSql.") ORDER BY commentdate DESC";
+      
+      $result = $this->conn->query($sql);
+  
+      if ($result->num_rows > 0) {
+        echo '<div class="panel-body" style="word-wrap: break-word">';
+        while($row = $result->fetch_assoc()) {
+          echo '<small>';
+          echo '<a href="profile.php?id='.$row["userid"].'">'.$row["username"].'</a>'; 
+          echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
+          echo '</small><br />';
+          echo $row["comment"]. "<br />";
+          echo '<hr />';
+        }
+        echo '</div>';   
       }
     }
+    
   }
 
   public function getFollowButton() {
@@ -57,40 +64,16 @@ class User
     }
   }
   
-  public function getComments() {
-    $sql = "SELECT * FROM Comments 
-            INNER JOIN Users ON Comments.userId = Users.userId 
-            WHERE Comments.userid=".$this->userid." ORDER BY commentdate DESC";
+  public function getPosts() {
 
-    if($_SESSION["userid"] == $this->userid) {
-      // include comments from followed users
-      echo '<div class="panel-heading">Your feed</div>';
-      $followingSql = "SELECT following_userid FROM Followers WHERE follower_userid=".$this->userid;
+    if($_SESSION["userid"] != $this->userid) {
+
       $sql = "SELECT * FROM Comments 
-              INNER JOIN Users ON Comments.userId = Users.userId 
-              WHERE Comments.userid=".$this->userid." OR Comments.userid IN (".$followingSql.") ORDER BY commentdate DESC";
+      INNER JOIN Users ON Comments.userId = Users.userId 
+      WHERE Comments.userid=".$this->userid." ORDER BY commentdate DESC";
+
       $result = $this->conn->query($sql);
-
-      if ($result->num_rows > 0) {
-        echo '<div class="panel-body" style="word-wrap: break-word">';
-        while($row = $result->fetch_assoc()) {
-          echo '<small>';
-          echo '<a href="profile.php?id='.$row["userid"].'">'."@".$row["username"].' '.'</a>'; 
-          echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
-          echo '</small><br />';
-          echo $row["comment"]. "<br />";
-          echo '<hr />';
-        }
-        echo '</div>';
-    }
-  }else{
-    
-    $result = $this->conn->query($sql);
-    $top = $result->fetch_assoc();
-   
     if ($result->num_rows > 0) {
-      echo '<div class = "panel-heading">@'.$top["username"].'\'s Hisses</div>';
-
       echo '<div class="panel-body" style="word-wrap: break-word">';
       
       while($row = $result->fetch_assoc()) {
@@ -102,15 +85,10 @@ class User
         echo '<hr />';
       }
 
-      echo '</div>';
-
-      
-      
-      
-      
+      echo '</div>';   
       
   }else{
-    echo '<p style="font-size: 200%">This User has no posts yet!</p>';
+    echo '<p style="font-size: 200%">This User has no hisses yet!</p>';
   }
 
   }
