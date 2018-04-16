@@ -2,7 +2,7 @@
 /**
  *  Registers the user and redirects to profile
  */
-session_start();
+
 include 'database.php';
 
 $username = mysqli_real_escape_string($conn, $_POST["username"]);

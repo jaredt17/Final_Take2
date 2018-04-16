@@ -2,7 +2,6 @@
 /**
  *  Login user and redirect to profile
  */
-session_start();
 include 'database.php';
 
 $email = mysqli_real_escape_string($conn, $_POST["email"]);
