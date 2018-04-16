@@ -80,8 +80,8 @@ if ($conn->query($sql) === TRUE) {
 }
 
 //Insert test <User>
-$sql = "INSERT INTO Users (userid, firstname, lastname, email, password, reg_date) 
-        VALUES ('1', 'John', 'Smith', 'john@example.com', 'password', CURRENT_TIMESTAMP)";
+$sql = "INSERT INTO Users (userid, username, email, password, reg_date) 
+        VALUES ('1', 'john123', 'john@example.com', 'password', CURRENT_TIMESTAMP)";
 
 if ($conn->query($sql) === TRUE) {
     echo "New <User> record created successfully<br />";
