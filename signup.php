@@ -13,7 +13,7 @@ if(!empty($username) && !empty($email) && !empty($password)) {
 
   $StorePassword = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
 
-  $sql = "INSERT INTO Users (username, email, password)
+  $sql = "INSERT INTO users (username, email, password)
   VALUES ('".$username."', '".$email."', '".$StorePassword."')";
 
   if ($conn->query($sql) === TRUE) {
