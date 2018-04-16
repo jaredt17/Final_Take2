@@ -3,7 +3,7 @@
  *  Connects to database
  */
 require("config.php");
-
+ob_start();
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
