@@ -19,7 +19,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
     if($oldPass != $newPass){
 
         // Continue the process
-        $sql = "SELECT * FROM Users WHERE userid= '$userid' AND password= '$oldPass'";
+        $sql = "SELECT * FROM users WHERE userid= '$userid' AND password= '$oldPass'";
         $result = $conn->query($sql);
         if($result->num_rows > 0)
         {   

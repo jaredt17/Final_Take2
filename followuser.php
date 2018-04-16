@@ -9,10 +9,10 @@ if(!empty($_POST["userid"])) {
   $userid = mysqli_real_escape_string($conn, $_POST["userid"]);
 
   if(isset($_POST["unfollow"])) {
-    $sql = "DELETE FROM Followers WHERE follower_userid=".$_SESSION["userid"]." AND following_userid=".$userid;
+    $sql = "DELETE FROM followers WHERE follower_userid=".$_SESSION["userid"]." AND following_userid=".$userid;
     $conn->query($sql);
   } else {
-    $sql = "INSERT INTO Followers (follower_userid, following_userid, followerdate) 
+    $sql = "INSERT INTO followers (follower_userid, following_userid, followerdate) 
             VALUES ('".$_SESSION["userid"]."', '" . $userid . "', CURRENT_TIMESTAMP)";
     $conn->query($sql);
   }
