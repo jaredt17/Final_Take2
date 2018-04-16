@@ -26,6 +26,14 @@ body {
     text-align: center;
 }
 
+
+.hidden{
+  display: none;
+}
+
+
+
+
 .form-control{
   color: #000000;
   border: 2px solid black;

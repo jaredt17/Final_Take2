@@ -43,6 +43,12 @@ class User
           echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
           echo '</small><br />';
           echo $row["comment"]. "<br />";
+              //NEED TO ADD LIKES AND DISLIKES BELOW
+
+              
+
+
+
           echo '<hr />';
         }
         echo '</div>';   
@@ -82,6 +88,13 @@ class User
         echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
         echo '</small><br />';
         echo $row["comment"]. "<br />";
+           //NEED TO ADD LIKES AND DISLIKES BELOW
+
+
+
+
+
+
         echo '<hr />';
       }
 

@@ -22,6 +22,7 @@ if(isset($_GET["id"])) :
 <head>
   <title>Profile</title>
   <?php include 'css/css.html'; ?>
+  <script src = "js/like.js"></script>
 </head>
 
 <body>
