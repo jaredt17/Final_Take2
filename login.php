@@ -9,7 +9,7 @@ $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
 if(!empty($email) && !empty($password)) {
 
-  $sql = "SELECT * from users where email = '$email'";
+  $sql = "SELECT * from users where email = '{$email}'";
   $result = $conn->query($sql);
   while($row = $result->fetch_assoc())
   {
