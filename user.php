@@ -17,10 +17,13 @@ class User
   }
   
   private function initUser($userid) {
-    $sql = "SELECT * FROM Users WHERE userid='{$this->userid}'";
+    $sql = "SELECT * FROM Users WHERE userid=".$this->userid;
     $result = $this->conn->query($sql);
+
+    if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()){
         $this->username = $row["username"];
+      }
     }
   }
   
@@ -123,7 +126,7 @@ class User
   }
   
   public function getNumFollowers() {
-    $sql= "SELECT * FROM Followers WHERE following_userid=" . $this->userid;
+    $sql="SELECT * FROM Followers WHERE following_userid=" . $this->userid;
     $result=mysqli_query($this->conn,$sql);
     return mysqli_num_rows($result);
   }
@@ -133,6 +136,7 @@ class User
     $result=mysqli_query($this->conn,$sql);
     return mysqli_num_rows($result);
   }
+  
 
 }
 ?>
