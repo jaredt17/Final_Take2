@@ -19,8 +19,8 @@ class User
   private function initUser($userid) {
     $sql = "SELECT * FROM Users WHERE userid=".$this->userid;
     $result = $this->conn->query($sql);
-
-    if ($result->num_rows > 0) {
+    $rowcount=mysqli_num_rows($result);
+    if ($rowcount > 0) {
       while($row = $result->fetch_assoc()){
         $this->username = $row["username"];
       }
@@ -36,8 +36,8 @@ class User
               WHERE Comments.userid=".$this->userid." OR Comments.userid IN (".$followingSql.") ORDER BY commentdate DESC";
       
       $result = $this->conn->query($sql);
-  
-      if ($result->num_rows > 0) {
+      $rowcount=mysqli_num_rows($result);
+      if ($rowcount > 0) {
         echo '<div class="panel-body" style="word-wrap: break-word">';
         while($row = $result->fetch_assoc()) {
           echo '<small>';
@@ -84,7 +84,8 @@ class User
       WHERE Comments.userid=".$this->userid." ORDER BY commentdate DESC";
 
       $result = $this->conn->query($sql);
-    if ($result->num_rows > 0) {
+      $rowcount=mysqli_num_rows($result);
+    if ($rowcount > 0) {
       echo '<div class="panel-body" style="word-wrap: break-word">';
       
       while($row = $result->fetch_assoc()) {
@@ -115,14 +116,11 @@ class User
   public function getOtherUsers() {
     $sql = "SELECT * FROM Users WHERE userid<>" . $this->userid . " AND userid<>" . $_SESSION["userid"];
     $result = $this->conn->query($sql);
-
-    if ($result->num_rows > 0) {
       echo "<ul style='list-style-type:none'>";
       while($row = $result->fetch_assoc()) {
         echo '<li><a href="profile.php?id=' . $row["userid"] . '">' ."@". $row["username"] . " " . '</a></li>';
       }
       echo "</ul>";
-    }
   }
   
   public function getNumFollowers() {
