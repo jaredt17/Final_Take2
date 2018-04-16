@@ -12,7 +12,8 @@ if(!empty($_POST["comment"])) {
     VALUES (NULL, '".$_SESSION["userid"]."', '" . $comment . "', CURRENT_TIMESTAMP)";
       $conn->query($sql);
   }else{
-    echo "<p id = 'posting'> Message was more than 200 characters, try again.</p>";
+    $_SESSION['message'] =  "Message was more than 200 characters, try again!";
+    echo "<p id = 'posting'> ". $_SESSION['message'] ."</p>";
   }
 }
 $conn->close();

@@ -22,7 +22,8 @@ if(!empty($username) && !empty($email) && !empty($password)) {
       $_SESSION["logged_in"] = 0;
       header("Location: index.php");
   } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      $_SESSION['message'] = "There was an error during signup:" . $sql . "<br>" . $conn->error;
+      header("Location: error.php");
   }
 } else {
   echo "Error: Invalid fields";
