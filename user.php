@@ -123,7 +123,7 @@ class User
   }
   
   public function getNumFollowers() {
-    $sql="SELECT * FROM Followers WHERE following_userid=" . $this->userid;
+    $sql= "SELECT * FROM Followers WHERE following_userid=" . $this->userid;
     $result=mysqli_query($this->conn,$sql);
     return mysqli_num_rows($result);
   }
@@ -133,7 +133,6 @@ class User
     $result=mysqli_query($this->conn,$sql);
     return mysqli_num_rows($result);
   }
-  
 
 }
 ?>
