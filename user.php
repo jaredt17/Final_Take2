@@ -45,13 +45,16 @@ class User
           echo $row["comment"]. "<br />";
               //NEED TO ADD LIKES AND DISLIKES BELOW
 
-              
+
 
 
 
           echo '<hr />';
         }
         echo '</div>';   
+      }
+      else{
+        echo '<p style="font-size: 200%">You have no hisses yet!</p>';
       }
     }
     

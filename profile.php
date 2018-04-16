@@ -81,7 +81,7 @@ if(isset($_GET["id"])) :
           <?php $user->getFollowButton(); ?>
         </form>  
           <br>
-         
+         <!-- PLACE PROFILE IMAGE HERE -->
 
         </div>
       </div>
