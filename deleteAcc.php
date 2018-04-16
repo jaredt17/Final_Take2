@@ -20,33 +20,32 @@ if(!empty($email) && !empty($password)) {
 
   $sql = "SELECT * from users where email = '$email' AND username = '$username'";
   $result = $conn->query($sql);
-  $row = $result->fetch_array(MYSQLI_BOTH);
-  
-  if(password_verify($password, $row['password'] ))
+  while($row = $result->fetch_assoc())
   {
-       //DELETE USER
-       //delete comments
-       $sql1 = "DELETE FROM comments where userid = '{$userid}'";
-       $conn->query($sql1);
-       //delete follow
-        $sql2 = "DELETE FROM followers where follower_userid = '{$userid}' OR following_userid = '{$userid}'";
-        $conn->query($sql2);
-
-    $sql3 = "DELETE FROM users WHERE userid = '{$userid}'";
-    $conn->query($sql3);
-
-    session_unset();
-    session_destroy(); 
-    header("Location: index.php");
-
-  }else{
-    $_SESSION['message'] = "You have entered wrong password, try again!";
-    header("location: error.php");
+    if(password_verify($password, $row['password'] ))
+    {
+         //DELETE USER
+         //delete comments
+         $sql1 = "DELETE FROM comments where userid = '{$userid}'";
+         $conn->query($sql1);
+         //delete follow
+          $sql2 = "DELETE FROM followers where follower_userid = '{$userid}' OR following_userid = '{$userid}'";
+          $conn->query($sql2);
+  
+      $sql3 = "DELETE FROM users WHERE userid = '{$userid}'";
+      $conn->query($sql3);
+  
+      session_unset();
+      session_destroy(); 
+      header("Location: index.php");
+  
+    }else{
+      $_SESSION['message'] = "You have entered wrong password, try again!";
+      header("location: error.php");
+    }  
+  } 
   }
-  //Check email and password
-
-} else {
-  echo "Error: Invalid fields";
-}
+  
+  
 $conn->close();
 ?>

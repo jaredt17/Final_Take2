@@ -121,8 +121,11 @@ if(isset($_GET["id"])) :
         <?php 
         $sql = "SELECT * FROM users WHERE userid='$userid'";
         $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        echo $row['username']; 
+        
+        while($row = $result->fetch_assoc())
+        {
+          echo $row['username']; 
+        }
         ?>'s Hisses
         </div>
         <?php $user->getPosts();?>

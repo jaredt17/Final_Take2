@@ -20,8 +20,9 @@ class User
     $result = $this->conn->query($sql);
 
     if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
-      $this->username = $row["username"];
+      while($row = $result->fetch_assoc()){
+        $this->username = $row["username"];
+      }
     }
   }
   
