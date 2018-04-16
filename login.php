@@ -12,7 +12,7 @@ if(!empty($email) && !empty($password)) {
 
   $sql = "SELECT * from users where email = '$email'";
   $result = $conn->query($sql);
-  $row = $result->fetch_array(MYSQLI_BOTH);
+  $row = $result->fetch_assoc();
   
   if(password_verify($password, $row['password'] ))
   {

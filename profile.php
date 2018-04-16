@@ -107,6 +107,9 @@ if(isset($_GET["id"])) :
         <div class="panel panel-success">
 
         <?php $user->getFeed();?>
+
+
+
         </div>
         <?php endif; ?>
 
@@ -127,7 +130,9 @@ if(isset($_GET["id"])) :
         </div>
         <?php endif; ?>
 
+       
         <?php
+        /*
           $sql = "SELECT * FROM user";
           $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result)> 0){
@@ -155,7 +160,9 @@ if(isset($_GET["id"])) :
                       <input type='submit' name='upload' value='Upload Image'>
                   </form>";
           }
+          */
           ?>
+          
 
     </div><!--End of 2nd Col-->
 

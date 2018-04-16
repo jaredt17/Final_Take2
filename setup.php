@@ -37,7 +37,7 @@ $sql = "CREATE TABLE Users (
         userid INT AUTO_INCREMENT, 
         username VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        password VARCHAR(50) NOT NULL,
+        password VARCHAR(60) NOT NULL,
         reg_date TIMESTAMP,
         PRIMARY KEY(userid),
         UNIQUE(email))";
@@ -54,8 +54,9 @@ $sql = "CREATE TABLE Comments (
         userid INT NOT NULL,
         comment VARCHAR(200) NOT NULL,
         commentdate TIMESTAMP,
+        likes INT(11) NOT NULL,
         PRIMARY KEY (commentid),
-        FOREIGN KEY (userid) REFERENCES Users(userid))";
+        FOREIGN KEY (userid) REFERENCES Users(userid));";
 
 if ($conn->query($sql) === TRUE) {
     echo "Table <Comments> created successfully<br />";
