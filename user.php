@@ -3,6 +3,7 @@
  *  User class
  *  Contains all user related functions
  */
+ob_start();
 class User
 {
   public $conn;
@@ -16,13 +17,10 @@ class User
   }
   
   private function initUser($userid) {
-    $sql = "SELECT * FROM Users WHERE userid=".$this->userid;
+    $sql = "SELECT * FROM Users WHERE userid='{$this->userid}'";
     $result = $this->conn->query($sql);
-
-    if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()){
         $this->username = $row["username"];
-      }
     }
   }
   

@@ -2,6 +2,7 @@
 /* Main page with two forms: sign up and log in */
 require 'database.php';
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
