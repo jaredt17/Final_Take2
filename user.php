@@ -17,7 +17,7 @@ class User
   }
   
   private function initUser($userid) {
-    $sql = "SELECT * FROM Users WHERE userid=".$this->userid;
+    $sql = "SELECT * FROM Users WHERE userid='{$this->userid}'";
     $result = $this->conn->query($sql);
     $rowcount=mysqli_num_rows($result);
     if ($rowcount > 0) {
