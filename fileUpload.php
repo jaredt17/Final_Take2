@@ -2,20 +2,41 @@
 session_start();
 include 'database.php';
 $msg = "";
-if(isset($_POST['upload'])){
-    $target = "images/".basename($_FILES['images']['name']);
 
-    $images = $_FILES['images']['name'];
-    $text = $_POST['text'];
+if(isset($_POST['submit'])){
+    $file = $_FILES['file'];
 
-    $sql = "INSERT INTO images (images, text) VALUES ('$images', '$text')";
-    $conn->query($sql);
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
 
-    if(move_uploaded_file($_FILES['images']['tpm_name'], $target)){
-        $msg = "Image has been uploaded!";
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg','jpeg', 'png');
+
+    if(in_array($fileActualExt, $allowed)){
+        if($fileError === 0){
+            if($fileSize < 500000){
+                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                $fileDestination = 'images/'.$fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+                header("Location: profile.php?uploadsuccess");
+            }
+                    else{
+                     echo "File size is to large!";
+                    }
+        }
+                else{
+                echo "There an error uploading the file.";
+                }
     }
-    else {
-        $msg = "Error has occurred with file uploaded";
-    }
+                else{
+                echo "You can't upload this type of image!";
+                }
+
+
 }
 ?>
