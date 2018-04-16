@@ -9,7 +9,7 @@ if(!empty($_POST["comment"])) {
   $comment = mysqli_real_escape_string($conn, $_POST["comment"]);
   if(strlen($comment) < 201){
     $sql = "INSERT INTO comments (commentid, userid, comment, commentdate) 
-    VALUES (NULL, '".$_SESSION["userid"]."', '" . $comment . "', CURRENT_TIMESTAMP)";
+    VALUES (NULL, '".$_SESSION["userid"]."', '" . htmlspecialchars($comment) . "', CURRENT_TIMESTAMP)";
       $conn->query($sql);
   }else{
     $_SESSION['message'] =  "Message was more than 200 characters, try again!";
