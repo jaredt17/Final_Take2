@@ -108,14 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <div id="signup">   
           <h1>Become a Snake for Free!</h1>
           
-          <form action="index.php" method="post" autocomplete="off">
+          <form action="index.php" method="post" autocomplete="off" onsubmit="return checkForm(this);">
           
-        
             <div class="field-wrap">
               <label>
                 Username<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='username' id ="username" pattern = "([A-Za-z0-9]+).{4,}" title = "Username must be at least 5 characters long. Can contain A-Z upper or lowercase and numbers only." />
+              <input type="text" required autocomplete="off" name='username' id ="username" pattern = "[A-Za-z0-9]+.{4,}" title = "Username must be at least 5 characters long. Can contain A-Z upper or lowercase, numbers, or underscores." />
             </div>
         
           <div class="field-wrap">
@@ -231,6 +230,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       }
 
      
+</script>
+
+<script type="text/javascript">
+
+function checkForm(form){
+  if(form.username.value == "") {
+      alert("Error: Username cannot be blank!");
+      form.username.focus();
+      return false;
+    }
+    re = /^\w+$/;
+    if(!re.test(form.username.value)) {
+      alert("Error: Username must contain only letters, numbers and underscores!");
+      form.username.focus();
+      return false;
+    }
+    if(form.password.value == form.username.value) {
+        alert("Error: Password must be different from Username!");
+        form.password.focus();
+        return false;
+      }
+
+}
 </script>
 
 </body>

@@ -22,7 +22,7 @@ if(!empty($username) && !empty($email) && !empty($password)) {
       $_SESSION["logged_in"] = 0;
       header("Location: index.php");
   } else {
-      $_SESSION['message'] = "There was an error during signup: Try Again";
+      $_SESSION['message'] = "That username, email, or password, is already taken. Try again.";
       header("Location: error.php");
   }
 } else {
