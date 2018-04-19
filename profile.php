@@ -134,39 +134,6 @@ if(isset($_GET["id"])) :
         <?php endif; ?>
 
        
-        <?php
-        /*
-          $sql = "SELECT * FROM user";
-          $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result)> 0){
-            while($row = mysqli_fetch_array($result)){
-              $id = $row['id'];
-              $sqlImg = "SELECT * FROM profileimg WHERE userid = 'id'";
-              $resultImg = mysqli_query($conn, $sqlImg);
-                while($rowImg = mysql_fetch_assoc($resultImg)){
-                    echo "<div>";
-                        if($rowImg['status']== 0){
-                          echo "<img src= 'images/profile".$id.".jpg'>";
-                        }else{
-                          echo "<img src= 'images/snake.png'>";
-                        }
-                        echo $row['username'];
-                    echo "</div>";
-                }
-            }
-          }else{
-            echo "No Users currently!";
-          }
-          if(isset($_SESSION['id'])){
-            echo  "<form action='fileUpload.php' method='post' enctype='multipart/form-data'>
-                      <input type='file' name= 'image'>
-                      <input type='submit' name='upload' value='Upload Image'>
-                  </form>";
-          }
-          */
-          ?>
-          
-
     </div><!--End of 2nd Col-->
 
     <div class="col-md-4"> 
