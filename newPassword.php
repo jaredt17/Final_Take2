@@ -25,7 +25,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
         {   
             //Change user info here
             $sql = $conn->query("UPDATE users SET password = '{$newPass}' WHERE userid = '{$userid}'");
-
+        
         }else{
             $_SESSION['message'] = "Please enter a valid old password.";
             header("Location: error.php");
