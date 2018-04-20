@@ -19,7 +19,7 @@ $allowed = array('jpg');
 
 if(in_array($fileActualExt, $allowed)){
     if($fileError === 0){
-        if($fileSize < 1000000){
+        if($fileSize < 1048580){
             $fileNameNew = $imguserid.".".$fileActualExt;
             $fileDestination = 'uploads/'.$fileNameNew;
             move_uploaded_file($fileTmpName, $fileDestination);
