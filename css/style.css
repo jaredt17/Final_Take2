@@ -31,6 +31,16 @@ IMAGES STUFF_________________________________________________________
   width: 150px;
 }
 
+
+.profileimage-infeed img{
+  border-radius: 25px;
+  width: 50px;
+  display: inline-block;
+}
+
+
+
+
 .inputfile {
   position: relative;
 	text-align: right;

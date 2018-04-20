@@ -30,6 +30,7 @@ class User
   public function getFeed() {
     if($_SESSION["userid"] == $this->userid) {
       echo '<div class="panel-heading">Your feed</div>';
+      
       $followingSql = "SELECT following_userid FROM followers WHERE follower_userid=".$this->userid;
       $sql = "SELECT * FROM comments 
               INNER JOIN users ON comments.userId = users.userId 
@@ -40,6 +41,24 @@ class User
       if ($rowcount > 0) {
         echo '<div class="panel-body" style="word-wrap: break-word">';
         while($row = $result->fetch_assoc()) {
+          
+         //adding profile pics
+        echo "<div class='profileimage-infeed'>";
+        $sqlImg = "SELECT * FROM profileimg WHERE userid = ".$row['userid'];
+        $resultImg = $this->conn->query($sqlImg);
+
+        while($rowImg = $resultImg->fetch_assoc()){
+
+        if($rowImg['status'] == 0){
+          echo "<img src = 'uploads/".$row['userid'].".jpg' alt = 'uid.ext'>";
+        }else{
+          echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+        }
+
+      echo "</div>";
+      }
+
+
           echo '<small>';
           echo '<a href="profile.php?id='.$row["userid"].'">'.$row["username"].'</a>'; 
           echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
@@ -89,6 +108,22 @@ class User
       echo '<div class="panel-body" style="word-wrap: break-word">';
       
       while($row = $result->fetch_assoc()) {
+        //adding profile pics
+        echo "<div class='profileimage-infeed'>";
+        $sqlImg = "SELECT * FROM profileimg WHERE userid = ".$row['userid'];
+        $resultImg = $this->conn->query($sqlImg);
+
+        while($rowImg = $resultImg->fetch_assoc()){
+
+        if($rowImg['status'] == 0){
+          echo "<img src = 'uploads/".$row['userid'].".jpg' alt = 'uid.ext'>";
+        }else{
+          echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+        }
+
+      echo "</div>";
+      }
+
         echo '<small>';
         echo '<a href="profile.php?id='.$row["userid"].'">'."@".$row["username"].' '.'</a>'; 
         echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
