@@ -7,6 +7,7 @@ session_start();
 include 'database.php';
 include 'user.php';
 
+
 if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing your profile page!";
   header("location: error.php");    
@@ -15,6 +16,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
 if(isset($_GET["id"])) :
   $userid = mysqli_real_escape_string($conn, $_GET["id"]);
   $user = new User($userid);
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +72,24 @@ if(isset($_GET["id"])) :
 <div class="row">
     <div class="col-md-3">
     <div class="panel panel-success">
-        <div class="panel-heading text-center"><?php echo "@".$user->username; ?></div>
+        <div class="panel-heading text-center">
+          
+        <?php 
+        $sqlImg = "SELECT * FROM profileimg WHERE userid = '$userid'";
+        $resultImg = mysqli_query($conn, $sqlImg);
+        while($rowImg = mysqli_fetch_assoc($resultImg)){
+            echo "<div class='profileimage'>";
+            if($rowImg['status'] == 0){
+              echo "<img src = 'uploads/".$userid.".jpg' alt = 'uid.ext'>";
+            }else{
+              echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+            }
+            echo "</div>";
+        }
+        ?>
+        <?php echo "@".$user->username; ?>
+      
+      </div>
         <div class="panel-body"> 
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
@@ -85,7 +104,29 @@ if(isset($_GET["id"])) :
 
         </div>
       </div>
-    
+              <!--IMAGE CONTENT__________________________________________________________________________________________ -->
+      <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
+<div class = "form">
+<form action="fileUpload.php" method="POST" enctype="multipart/form-data">
+
+<input type = "file" name="file" class = "inputfile">
+<button type="submit" class="button button-block" name="submit"/>Update Profile Image</button>
+</form>
+</div>
+
+
+
+
+
+
+
+
+      <?php endif; ?>
+         <!--_____________________________________________________________________________________________________ -->
+
+
+
+
     </div><!-- End of 1st col-->
 
     <div class="col-md-5">
@@ -101,6 +142,7 @@ if(isset($_GET["id"])) :
             <br />
           </form>
           </div>
+
         <?php endif; ?>
       
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
@@ -155,6 +197,13 @@ if(isset($_GET["id"])) :
         </div>
         <!-- /.container -->
     </footer> 
+     <!-- Bootstrap core JavaScript -->
+     <script src="css/jquery/jquery.min.js"></script>
+        <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="js/index.js"></script>
 <script>     
         function count_down(obj) {
              

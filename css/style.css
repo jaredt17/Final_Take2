@@ -21,6 +21,25 @@ body {
 }
 
 
+/*
+IMAGES STUFF_________________________________________________________
+*/
+
+
+.profileimage img{
+  border-radius: 25px;
+  width: 150px;
+}
+
+.inputfile {
+  position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+}
+
+
+/*_______________________________________________________________________*/
+
 /* Add a green text color and a checkmark when the requirements are right */
 .valid {
   color: green;

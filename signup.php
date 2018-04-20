@@ -20,6 +20,13 @@ if(!empty($username) && !empty($email) && !empty($password)) {
       $_SESSION["userid"] = $conn->insert_id;
       $_SESSION["username"] = $username;
       $_SESSION["logged_in"] = 0;
+
+      $imgId = $_SESSION['userid'];
+      $sqlImg = "INSERT INTO profileimg (userid, status)
+      VALUES ('$imgId', 1)";
+      $conn->query($sqlImg);
+
+
       header("Location: index.php");
   } else {
       $_SESSION['message'] = "That username, email, or password, is already taken. Try again.";

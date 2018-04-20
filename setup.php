@@ -79,6 +79,22 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error . "<br />";
 }
 
+
+// Create <profileimg> table
+$sql = "CREATE TABLE profileimg (
+    id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+    userid int(11) not null, 
+    status int(11) not null
+    );";
+
+if ($conn->query($sql) === TRUE) {
+echo "Table <Followers> created successfully<br />";
+} else {
+echo "Error creating table: " . $conn->error . "<br />";
+}
+
+
+
 //Insert test <User>
 $sql = "INSERT INTO Users (userid, username, email, password, reg_date) 
         VALUES ('1', 'john123', 'john@example.com', 'password', CURRENT_TIMESTAMP)";
