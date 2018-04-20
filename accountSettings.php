@@ -18,7 +18,8 @@ if ( $_SESSION['logged_in'] != 1 ) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Profile</title>
+<link rel="shortcut icon" href="images/snake.png" type="image/x-icon" />
+  <title>Account Settings</title>
   <?php include 'css/css.html'; ?>
 </head>
 <body>

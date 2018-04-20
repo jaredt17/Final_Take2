@@ -23,6 +23,7 @@ if(isset($_GET["id"])) :
 <html>
 <head>
   <title>Profile</title>
+  <link rel="shortcut icon" href="images/snake.png" type="image/x-icon" />
   <?php include 'css/css.html'; ?>
   <script src = "js/like.js"></script>
 </head>

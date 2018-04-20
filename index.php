@@ -7,6 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="images/snake.png" type="image/x-icon" />
   <title>Sign-Up/Login</title>
   <?php include 'css/css.html'; ?>
 </head>

@@ -7,8 +7,9 @@ session_destroy();
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="images/snake.png" type="image/x-icon" />
   <meta charset="UTF-8">
-  <title>Error</title>
+  <title>See you next time!</title>
   <?php include 'css/css.html'; ?>
 </head>
 
