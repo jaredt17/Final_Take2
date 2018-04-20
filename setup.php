@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 echo 'Connected successfully to database<br />';
 
 // Create <Users> table
-$sql = "CREATE TABLE Users (
+$sql = "CREATE TABLE users (
         userid INT AUTO_INCREMENT, 
         username VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
@@ -49,7 +49,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 // Create <Comments> table
-$sql = "CREATE TABLE Comments (
+$sql = "CREATE TABLE comments (
         commentid INT AUTO_INCREMENT,
         userid INT NOT NULL,
         comment VARCHAR(200) NOT NULL,
@@ -65,7 +65,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 // Create <Followers> table
-$sql = "CREATE TABLE Followers (
+$sql = "CREATE TABLE followers (
         follower_userid INT NOT NULL,
         following_userid INT NOT NULL,
         followerdate TIMESTAMP,
