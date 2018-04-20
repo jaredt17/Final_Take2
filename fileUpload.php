@@ -32,7 +32,7 @@ if(in_array($fileActualExt, $allowed)){
         }
 
     }else{
-        echo "Error while uploading, try again";
+        echo "Please upload using a JPG image file!";
     }
 
 
