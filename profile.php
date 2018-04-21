@@ -183,7 +183,7 @@ if(isset($_GET["id"])) :
         <div class="panel-heading">Search for a user or post!
         <!-- SEARCH BAR HERE!?-->
         <form action="search.php" method="POST"> 
-        <input type = "text" name = "search" placeholder"Search">
+        <input type = "text" name = "search" id="searchbar" onclick ="alertfunc()" placeholder"Search">
         <input name = "submit-search" id = "submit-search" type="submit" value="Search" />
         </div>
         </form>
@@ -218,7 +218,7 @@ if(isset($_GET["id"])) :
 
         <script src="js/index.js"></script>
 <script>     
-        function count_down(obj) {
+     function count_down(obj) {
              
             var element = document.getElementById('count2');
              
@@ -233,7 +233,21 @@ if(isset($_GET["id"])) :
              
         }
 
+      var isClicked = false;
+      function alertfunc() {
+      if(isClicked === false)
+      {
+        confirm("If you are searching for a user do not include the '@' symbol. Thanks!");
+        isClicked = true;
+      }
+     
+
+      }
+
+
 </script>
+
+
 </body>
 
 </html>
