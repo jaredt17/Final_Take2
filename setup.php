@@ -39,6 +39,8 @@ $sql = "CREATE TABLE users (
         email VARCHAR(50) NOT NULL,
         password VARCHAR(60) NOT NULL,
         reg_date TIMESTAMP,
+        city VARCHAR(30) NOT NULL,
+        coutnry VARCHAR(5) NOT NULL,
         PRIMARY KEY(userid),
         UNIQUE(email))";
 
