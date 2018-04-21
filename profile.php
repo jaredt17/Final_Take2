@@ -115,11 +115,12 @@ if(isset($_GET["id"])) :
 </form>
 </div>
 
+<div class="panel panel-success">
+<?php $user->getMentions(); ?>
 
 
 
-
-
+</div>
 
 
       <?php endif; ?>

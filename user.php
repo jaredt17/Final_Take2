@@ -27,6 +27,56 @@ class User
     }
   }
   
+  public function getMentions() {
+    if($_SESSION["userid"] == $this->userid) {
+      $mentionID = $_SESSION['username'];
+      echo '<div class="panel-heading">People who have mentioned you!</div>';
+      echo '<div class="panel-body" style="word-wrap: break-word">';
+      $mentionSQL = "SELECT * FROM comments INNER JOIN users ON comments.userId = users.userId WHERE comment LIKE '%$mentionID%'";
+      $result = $this->conn->query($mentionSQL);
+      $rowcount=mysqli_num_rows($result);
+      if($rowcount > 0){
+        while($row = $result->fetch_assoc()) {
+          //adding profile pics
+        echo "<div class='profileimage-infeed'>";
+        $sqlImg = "SELECT * FROM profileimg WHERE userid = ".$row['userid'];
+        $resultImg = $this->conn->query($sqlImg);
+
+        while($rowImg = $resultImg->fetch_assoc()){
+
+        if($rowImg['status'] == 0){
+          echo "<img src = 'uploads/".$row['userid'].".jpg' alt = 'uid.ext'>";
+        }else{
+          echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+        }
+
+      echo "</div>";
+      }
+      //done with profile pic
+
+      
+      echo '<small>';
+      echo '<a href="profile.php?id='.$row["userid"].'">@'.$row["username"].'</a>'; 
+      echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
+      echo '</small><br />';
+      echo $row["comment"]. "<br />";
+      echo '<hr />';
+
+
+        }
+      }else{
+        echo '<p>You have not been mentioned by anyone!</p>';
+      }
+
+
+      echo "</div>";
+    }
+
+
+  }
+
+
+
   public function getFeed() {
     if($_SESSION["userid"] == $this->userid) {
       echo '<div class="panel-heading">Your feed</div>';
