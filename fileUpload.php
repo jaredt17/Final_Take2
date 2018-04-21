@@ -29,15 +29,34 @@ if(in_array($fileActualExt, $allowed)){
 
         }else{
             echo "File was too large, try again!";
+            $imgId = $_SESSION['userid'];
+            $sqlImg = "UPDATE profileimg
+            SET status = 1 
+            WHERE userid = {$imgId};
+            ";
+            $conn->query($sqlImg);
         }
 
     }else{
         echo "Please upload using a JPG image file!";
+        $imgId = $_SESSION['userid'];
+        $sqlImg = "UPDATE profileimg
+        SET status = 1 
+        WHERE userid = {$imgId};
+        ";
+        $conn->query($sqlImg);
     }
 
 
 }else{
     $_SESSION['message'] = "There was an error while uploading... Try again!";
+    $imgId = $_SESSION['userid'];
+      $sqlImg = "UPDATE profileimg
+      SET status = 1 
+      WHERE userid = {$imgId};
+      ";
+      $conn->query($sqlImg);
+      
     echo "<div class='form'>";
     echo "<h1>Error</h1>";
     echo "<p>";

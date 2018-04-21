@@ -63,11 +63,35 @@ if ( $_SESSION['logged_in'] != 1 ) {
     <div class="container-fluid text-center">
 
         <div class="row">
-      
-            <div class="col-lg-2">
-                
+        
+            <div class="col-lg-3">
+            <?php 
+            $userid2 = $_SESSION['userid'];
+            $sqlImg = "SELECT * FROM profileimg WHERE userid = '$userid2'";
+            $resultImg = mysqli_query($conn, $sqlImg);
+            while($rowImg = mysqli_fetch_assoc($resultImg)){
+                echo "<div class='profileimage'>";
+                if($rowImg['status'] == 0){
+                  echo "<a href = 'accountSettings.php'>";
+                  echo "<img src = 'uploads/".$userid2.".jpg' alt = 'uid.ext'>";
+                  echo "</a>";
+                }else{
+                  echo "<a href = 'accountSettings.php'>";
+                  echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+                  echo "</a>";
+                }
+                echo "</div>";
+        }
+        ?>
+            <div class = "form">
+              <form action="fileUpload.php" method="POST" enctype="multipart/form-data">
+
+              <input type = "file" name="file" class = "inputfile">
+              <button type="submit" class="button button-block" name="submit"/>Update Profile Image</button>
+              </form>
+              </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
             <div class="form">
       
       <ul class="tab-group">
@@ -152,7 +176,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
       
 </div> <!-- /form -->
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                   
             </div>
         </div>

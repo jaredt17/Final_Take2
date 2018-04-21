@@ -74,16 +74,20 @@ if(isset($_GET["id"])) :
     <div class="col-md-3">
     <div class="panel panel-success">
         <div class="panel-heading text-center">
-          
+          <p><small>Click on your profile picture to change it!</small></p>
         <?php 
         $sqlImg = "SELECT * FROM profileimg WHERE userid = '$userid'";
         $resultImg = mysqli_query($conn, $sqlImg);
         while($rowImg = mysqli_fetch_assoc($resultImg)){
             echo "<div class='profileimage'>";
             if($rowImg['status'] == 0){
+              echo "<a href = 'accountSettings.php'>";
               echo "<img src = 'uploads/".$userid.".jpg' alt = 'uid.ext'>";
+              echo "</a>";
             }else{
+              echo "<a href = 'accountSettings.php'>";
               echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+              echo "</a>";
             }
             echo "</div>";
         }
@@ -108,13 +112,7 @@ if(isset($_GET["id"])) :
       </div>
               <!--IMAGE CONTENT__________________________________________________________________________________________ -->
       <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
-<div class = "form">
-<form action="fileUpload.php" method="POST" enctype="multipart/form-data">
 
-<input type = "file" name="file" class = "inputfile">
-<button type="submit" class="button button-block" name="submit"/>Update Profile Image</button>
-</form>
-</div>
 
 <div class="panel panel-success">
 <?php $user->getMentions(); ?>
