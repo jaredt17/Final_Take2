@@ -74,7 +74,9 @@ if(isset($_GET["id"])) :
     <div class="col-md-3">
     <div class="panel panel-success">
         <div class="panel-heading text-center">
-          <p><small>Click on your profile picture to change it!</small></p>
+            <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
+              <p><small>Click on your profile picture to change it!</small></p>
+            <?php endif; ?>
         <?php 
         $sqlImg = "SELECT * FROM profileimg WHERE userid = '$userid'";
         $resultImg = mysqli_query($conn, $sqlImg);
