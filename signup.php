@@ -7,14 +7,16 @@ include 'database.php';
 
 $username = mysqli_real_escape_string($conn, $_POST["username"]);
 $email = mysqli_real_escape_string($conn, $_POST["email"]);
+$city = mysqli_real_escape_string($conn, $_POST["city"]);
+$country = mysqli_real_escape_string($conn, $_POST["country"]);
 $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
 if(!empty($username) && !empty($email) && !empty($password)) {
 
   $StorePassword = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
 
-  $sql = "INSERT INTO users (username, email, password)
-  VALUES ('".$username."', '".$email."', '".$StorePassword."')";
+  $sql = "INSERT INTO users (username, email, password, city, country)
+  VALUES ('".$username."', '".$email."', '".$StorePassword."', '".$city."', '".$country."')";
 
   if ($conn->query($sql) === TRUE) {
       $_SESSION["userid"] = $conn->insert_id;

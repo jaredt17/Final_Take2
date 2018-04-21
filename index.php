@@ -124,6 +124,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             </label>
             <input type="email"required autocomplete="off" name='email' />
           </div>
+
+           <div class="field-wrap">
+            <label>
+              City<span class="req">*</span>
+            </label>
+            <input type="text"required autocomplete="off" pattern = "^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" name='city' />
+          </div>
+
+         <div class="field-wrap">
+            <label>
+              3 Character Country Code<span class="req">*</span>
+            </label>
+            <input type="text"required autocomplete="off" pattern="[A-Za-z]{3}" title="Three letter country code" name='country' />
+          </div>
           
           <div class="field-wrap">
             <label>
