@@ -95,6 +95,7 @@ if(isset($_GET["id"])) :
         <form action="followuser.php" method="post">
           <input type="hidden" name="userid" value="<?php echo $userid ?>" />
           <p id = "posting">
+            <?php $user->getCity();?>
             <?php echo $user->getNumFollowing(); ?> Following |
             <?php echo $user->getNumFollowers(); ?> Followers
           </p>

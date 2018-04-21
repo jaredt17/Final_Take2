@@ -220,5 +220,17 @@ class User
     return mysqli_num_rows($result);
   }
 
+  public function getCity(){
+    $sql = "SELECT * FROM users WHERE userid =" .$this->userid;
+    $result=mysqli_query($this->conn,$sql);
+    while($row = $result->fetch_assoc()) {
+      echo $row["city"];
+      echo ', ';
+      echo $row["country"];
+      echo '<br>';
+    }
+  }
+
+
 }
 ?>
