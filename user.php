@@ -60,7 +60,7 @@ class User
 
 
           echo '<small>';
-          echo '<a href="profile.php?id='.$row["userid"].'">'.$row["username"].'</a>'; 
+          echo '<a href="profile.php?id='.$row["userid"].'">@'.$row["username"].'</a>'; 
           echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
           echo '</small><br />';
           echo $row["comment"]. "<br />";
@@ -169,6 +169,6 @@ class User
     $result=mysqli_query($this->conn,$sql);
     return mysqli_num_rows($result);
   }
-  
+
 }
 ?>

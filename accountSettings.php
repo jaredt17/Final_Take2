@@ -34,7 +34,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="homepage.php?id=<?php echo $_SESSION["userid"] ?>">
+      <a class="navbar-brand" href="profile.php?id=<?php echo $_SESSION["userid"] ?>">
                         <img id="brand-image" src="images/snake.png" alt="snake">
                         Hisser - A Sharing Site for Snakes 
       </a>

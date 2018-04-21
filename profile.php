@@ -126,22 +126,20 @@ if(isset($_GET["id"])) :
          <!--_____________________________________________________________________________________________________ -->
 
 
-
-
     </div><!-- End of 1st col-->
 
     <div class="col-md-5">
     
         <?php if(isset($_SESSION["userid"]) && $_SESSION["userid"] == $userid) : ?>
         <div class="panel panel-success">
+        <div class="panel-heading">
           <form action="addcomment.php" method="post">
             <textarea class="form-control" rows="3" name="comment" placeholder = "Share something with your fellow snakes..." onkeyup="count_down(this);"></textarea>
             <span class="text-muted pull-right" id="count2">200</span>
             <br>
             <input id = "hissButton" type="submit" value="HISS" />
-            <br />
-            <br />
           </form>
+          </div>
           </div>
 
         <?php endif; ?>
@@ -180,6 +178,20 @@ if(isset($_GET["id"])) :
     </div><!--End of 2nd Col-->
 
     <div class="col-md-4"> 
+      
+    <div class="panel panel-success">
+        <div class="panel-heading">Search for a user or post!
+        <!-- SEARCH BAR HERE!?-->
+        <form action="search.php" method="POST"> 
+        <input type = "text" name = "search" placeholder"Search">
+        <input name = "submit-search" id = "submit-search" type="submit" value="Search" />
+        </div>
+        </form>
+      </div>
+
+
+
+
     <div class="panel panel-success">
         <div class="panel-heading">Who to Follow</div>
         <div class="panel-body"> <?php $user->getOtherUsers(); ?> </div>
