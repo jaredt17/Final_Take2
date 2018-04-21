@@ -106,12 +106,12 @@ if(isset($_POST['search'])){
         echo '<hr />';
     }
 
-    $sql2 = "SELECT * FROM USERS WHERE username LIKE  '%$search%'";
+    $sql2 = "SELECT * FROM users WHERE username LIKE '%$search%'";
     $result2 = mysqli_query($conn, $sql2);
-    $queryResult = mysqli_num_rows($result2);
+    $queryResult2 = mysqli_num_rows($result2);
     echo "<h2>Usernames matching: ".$search."</h2>";
     echo '<hr />';
-    if($queryResult > 0){
+    if($queryResult2 > 0){
         while($row = mysqli_fetch_assoc($result2))
         {
 
