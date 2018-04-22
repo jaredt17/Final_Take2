@@ -69,10 +69,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         <div class="row">
       
-            <div class="col-lg-2">
+            <div class="col-lg-3">
+            <div class="panel panel-success">
+              <div class= "panel-heading">Top Rated Posts!</div>
+                <?php
+                  
+                    $sql = "SELECT * FROM comments INNER JOIN users ON comments.userId = users.userId  ORDER BY likes DESC
+                    LIMIT 5";     
+                  $result = $conn->query($sql);
+                  $rowcount=mysqli_num_rows($result);
+                  if ($rowcount > 0) {
+                    echo '<div class="panel-body" style="word-wrap: break-word">';
+                    while($row = $result->fetch_assoc()) {
+                    
+                     //adding profile pics
+                    echo "<div class='profileimage-infeed'>";
+                    $sqlImg = "SELECT * FROM profileimg WHERE userid = ".$row['userid'];
+                    $resultImg = $conn->query($sqlImg);
+            
+                    while($rowImg = $resultImg->fetch_assoc()){
+            
+                    if($rowImg['status'] == 0){
+                      echo "<img src = 'uploads/".$row['userid'].".jpg' alt = 'uid.ext'>";
+                    }else{
+                      echo "<img src = 'uploads/profiledefault.jpg' alt = 'defaultProf.ext'>";
+                    }
+            
+                  echo "</div>";
+                  }
+            
+            
+                      echo '<small>';
+                      echo '<a href="profile.php?id='.$row["userid"].'">@'.$row["username"].'</a>'; 
+                      echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
+                      echo '</small><br />';
+                      echo $row["comment"]. "<br />";
+                     
+                      
+                      //NEED TO ADD LIKES AND DISLIKES BELOW
+                      
+                      echo 'Likes: ';
+                      echo $row['likes'];
+                    
+            
+                      echo '<hr />';
+                    }
+                    echo '</div>';   
+                  }
+                  else{
+                    echo '<p style="font-size: 200%">You have no hisses yet!</p>';
+                  }
                 
+
+                ?>
+
+              </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
             <div class="form">
       
       <ul class="tab-group">
@@ -163,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       
 </div> <!-- /form -->
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                   
             </div>
         </div>
