@@ -84,4 +84,10 @@ fileUpload.php| Allows users to upload images no larger than 1mb or 1048580 byte
 _______________________________________________________________
 search.php| Allows us to search the database for either users or comments. Will show profile images along with the results. Made use of the LIKE clause in mysqli for this file. 
 
+
+
+
+______________________________________________________________
+like.php| Adds likes to the comments in our database using sql. Is called in user.php multiple times!
+
 ==============================================================
