@@ -364,6 +364,27 @@ textarea {
   width: 100%;
 }
 
+.button2 {
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1ab188;
+  color: #ffffff;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+}
+
+.button-block2 {
+  display: block;
+  width: 8%;
+}
+
 .forgot {
   margin-top: -20px;
   text-align: right;

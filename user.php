@@ -91,7 +91,7 @@ class User
       if ($rowcount > 0) {
         echo '<div class="panel-body" style="word-wrap: break-word">';
         while($row = $result->fetch_assoc()) {
-          
+        
          //adding profile pics
         echo "<div class='profileimage-infeed'>";
         $sqlImg = "SELECT * FROM profileimg WHERE userid = ".$row['userid'];
@@ -114,11 +114,18 @@ class User
           echo ' &middot; '.date("M d", strtotime($row["commentdate"]));
           echo '</small><br />';
           echo $row["comment"]. "<br />";
-              //NEED TO ADD LIKES AND DISLIKES BELOW
+         
           
-
-
-
+          //NEED TO ADD LIKES AND DISLIKES BELOW
+          
+          echo 'Likes: ';
+          echo $row['likes'];
+         echo " 
+          <form action='like.php' method='POST' autocomplete='off'>
+          <input type='hidden' name='var' value='".$row['commentid']."'/> 
+          <button type='submit' class='button2 button-block2' name='like'/>Like</button> 
+          </form>";
+         
 
           echo '<hr />';
         }
